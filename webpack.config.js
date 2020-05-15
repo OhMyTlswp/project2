@@ -7,47 +7,62 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: './main.js',
+  entry: './index.js',
   output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserPlugin(),
-      new OptimizeCssAssetsPlugin({})
-    ],
+    minimizer: [new TerserPlugin(), new OptimizeCssAssetsPlugin({})],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
   },
   plugins: [
     new HTMLWebpackPlugin({
       template: 'index.html',
       minify: {
-        collapseWhitespace: true
-      }
+        collapseWhitespace: true,
+      },
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
-    })
+      filename: '[name].css',
+    }),
   ],
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+            },
+          },
+        ],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.css$/,
-        use: [{
+        use: [
+          {
             loader: MiniCssExtractPlugin.loader,
             options: {},
           },
           'css-loader',
-        ]
-      }
-    ]
-  }
-}
+        ],
+      },
+    ],
+  },
+};

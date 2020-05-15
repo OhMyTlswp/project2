@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { view } from '@risingstack/react-easy-state';
 import MessageList from './messageList.js';
 import ChatForm from './chatForm.js';

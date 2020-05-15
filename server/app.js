@@ -1,12 +1,12 @@
 const express = require('express');
-const fs = require('fs');
 const app = express();
 
 app.use(express.static('public'));
 server = app.listen('3000', () => console.log('Server is running...'));
 
 const io = require('socket.io')(server);
-var id = 0;
+var id = 0,
+  messageId = 0;
 io.on('connection', (socket) => {
   id += 1;
   socket.id = id;
@@ -19,11 +19,13 @@ io.on('connection', (socket) => {
     socket.username = data;
   });
   socket.on('new_message', (message) => {
+    messageId += 1;
     io.sockets.emit('add_mess', {
       classMessage: 'chat-message',
       id: socket.id,
       username: socket.username,
       message: message,
+      messageId: messageId,
     });
   });
 });

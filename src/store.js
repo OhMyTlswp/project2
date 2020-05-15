@@ -22,7 +22,11 @@ const state = store({
     //   message: 'Ок',
     // },
   ],
-  message: 0,
   id: 0,
+  messageState: {
+    message: '',
+    username: '',
+    usernameEntered: false,
+  },
 });
 export default state;
