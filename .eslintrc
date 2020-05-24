@@ -2,7 +2,6 @@
   "parser": "babel-eslint",
   "extends": ["standard", "standard-react"],
   "rules": {
-    // enable additional rules
     "indent": ["error", 2],
     "linebreak-style": "off",
     "quotes": ["error", "single"],
@@ -11,8 +10,6 @@
     "space-before-function-paren": "off",
     "no-cond-assign": ["error", "always"],
     "comma-dangle": "off",
-
-    // disable rules from base configurations
     "no-console": "off"
   },
   "env": {

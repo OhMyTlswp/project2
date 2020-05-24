@@ -11,7 +11,7 @@
     "dev": "webpack-dev-server",
     "dev-mode": "npm-run-all validate-html stylelint eslint dev server",
     "server": "nodemon ./server/app.js localhost 3000",
-    "build": "npm-run-all production server"
+    "build": "npm-run-all validate-html stylelint eslint production"
   },
   "browserslist": "> 0.25%, not dead",
   "author": "Kalagin Ivan",

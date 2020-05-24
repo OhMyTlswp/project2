@@ -1,8 +1,10 @@
 import React from 'react';
 import { view } from '@risingstack/react-easy-state';
-import MessageList from './messageList.js';
-import ChatForm from './chatForm.js';
-function Chat(props) {
+import MessageList from '../MessageList/MessageList.js';
+import ChatForm from '../ChatForm/ChatForm.js';
+import './chat.css';
+
+function Chat() {
   return (
     <div className="chat">
       <MessageList />

@@ -7,17 +7,22 @@ server = app.listen('3000', () => console.log('Server is running...'));
 const io = require('socket.io')(server);
 var id = 0,
   messageId = 0;
+
 io.on('connection', (socket) => {
   id += 1;
   socket.id = id;
-  socket.on('get_id', (fs) => {
-    fs(socket.id);
+
+  socket.on('get_id', (getId) => {
+    getId(socket.id);
   });
+
   console.log('New user connected: ' + socket.id);
   socket.username = 'Anonymous';
+
   socket.on('set_name', (data) => {
     socket.username = data;
   });
+
   socket.on('new_message', (message) => {
     messageId += 1;
     io.sockets.emit('add_mess', {

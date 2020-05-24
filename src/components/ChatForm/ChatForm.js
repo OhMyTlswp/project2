@@ -1,8 +1,10 @@
 import React from 'react';
 import { view } from '@risingstack/react-easy-state';
-import socket from '../webSocketConnect';
-import state from '../store.js';
-function ChatForm(props) {
+import socket from '../../webSocketConnect';
+import state from '../../store.js';
+import './chatForm.css';
+
+function ChatForm() {
   function setName() {
     state.messageState.username = event.target.value;
   }

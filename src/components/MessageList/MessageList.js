@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { view } from '@risingstack/react-easy-state';
-import state from '../store.js';
-function MessageList(props) {
+import state from '../../store.js';
+import './messageList.css';
+
+function MessageList() {
   const scrollDown = useRef(null);
   const scroll = () => {
     scrollDown.current.scrollIntoView();
